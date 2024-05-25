@@ -49,4 +49,24 @@ describe('Town Project E2E', () => {
             })
         }
     })
+
+    it('Verify Shuffle functionality test', () => {
+        cy.get('select#towns').then((select) => {
+            const beforeShuffleOptions = [];
+            select.find('option').each((index, option) => {
+                beforeShuffleOptions.push(option.value);
+            });
+
+            cy.get('button#btnShuffle').click();
+
+            cy.get('select#towns').then((select) => {
+                const afterShuffleOptions = [];
+                select.find('option').each((index, option) => {
+                    afterShuffleOptions.push(option.value);
+                });
+
+                cy.wrap(beforeShuffleOptions).should('not.deep.equal', afterShuffleOptions);
+            });
+        });
+    })
 })

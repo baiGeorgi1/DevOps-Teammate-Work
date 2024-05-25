@@ -14,10 +14,11 @@ function deleteTown() {
 			option.remove();
 		}
 	}
-	if (removed)
+	if (removed) {
 		$('#result').text(townName + " deleted.");
-	else
+	} else {
 		$('#result').text(townName + " not found.");
+	}
 }
 
 function addTown() {
