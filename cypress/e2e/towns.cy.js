@@ -28,6 +28,8 @@ describe('Town Project E2E', () => {
             cy.get('#towns').within(() => {
                 cy.contains('option', town).should('not.exist');
             });
+
+            cy.get('#result').should('contain.text', `${town} deleted.`)
         }
     })
     
@@ -47,6 +49,7 @@ describe('Town Project E2E', () => {
             cy.get('#towns').within(() => {
                 cy.contains('option', town).scrollIntoView().should('be.visible')
             })
+            cy.get('#result').should('contain.text', `${town} added.`)
         }
     })
 
@@ -68,5 +71,7 @@ describe('Town Project E2E', () => {
                 cy.wrap(beforeShuffleOptions).should('not.deep.equal', afterShuffleOptions);
             });
         });
+
+        cy.get('#result').should('contain.text', 'Towns shuffled.')
     })
 })
