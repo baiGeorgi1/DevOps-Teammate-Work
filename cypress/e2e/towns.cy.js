@@ -30,4 +30,23 @@ describe('Town Project E2E', () => {
             });
         }
     })
+    
+    it('Verify Add town functionality', () => {
+        const randomTowns = ['Kazanlak', 'Vidin', 'Tarnovo'];
+        cy.contains('article', 'Add Existing Town').should('be.visible')
+        .within(() => {
+            cy.get('input#townNameForAdd').should('be.visible')
+            cy.contains('button', 'Add').should('be.visible')
+        })
+
+        for (const town of randomTowns) {
+            cy.get('#townNameForAdd')
+            .clear()
+            .type(town)
+            cy.get('#btnAdd').click();
+            cy.get('#towns').within(() => {
+                cy.contains('option', town).scrollIntoView().should('be.visible')
+            })
+        }
+    })
 })
