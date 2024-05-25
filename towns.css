@@ -65,7 +65,7 @@ article>header>h1 {
   }
   
   #result {
-	  display: none;
+	  display: block;
 	  width: 50%;
 	  margin: 10px auto;
 	  padding: 10px 15px;
